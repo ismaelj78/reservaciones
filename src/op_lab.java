@@ -127,13 +127,13 @@ public class op_lab extends javax.swing.JFrame {
     private void baja_labsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_baja_labsActionPerformed
         baja_lab baja1=new baja_lab();
         baja1.setVisible(true);
-        setVisible(false);
+        dispose();
     }//GEN-LAST:event_baja_labsActionPerformed
 
     private void regresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresaActionPerformed
         menu_admin menu_ad=new menu_admin();
         menu_ad.setVisible(true);
-        setVisible(false);
+        dispose();
     }//GEN-LAST:event_regresaActionPerformed
 
     private void mod_labsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mod_labsActionPerformed
@@ -143,7 +143,7 @@ public class op_lab extends javax.swing.JFrame {
     private void alta_labActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alta_labActionPerformed
         alta_lab alta1=new alta_lab();
         alta1.setVisible(true);
-        setVisible(false);
+        dispose();
     }//GEN-LAST:event_alta_labActionPerformed
 
     /**

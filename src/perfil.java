@@ -142,12 +142,12 @@ public class perfil extends javax.swing.JFrame {
                 if(tipo==1){
                 menu_admin menu1=new menu_admin();
                 menu1.setVisible(true);
-                setVisible(false);
+                dispose();
                 }
                 else{
                 menu_user menu2=new menu_user();
                 menu2.setVisible(true);
-                setVisible(false);
+                dispose();
                 }
             }
             else{

@@ -123,13 +123,15 @@ public class op_usuarios extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+            baja_user baja1=new baja_user();
+            baja1.setVisible(true);
+            dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void regresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresaActionPerformed
             menu_admin menu1=new menu_admin();
             menu1.setVisible(true);
-            setVisible(false);
+            dispose();
     }//GEN-LAST:event_regresaActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

@@ -28,7 +28,7 @@ static String hora;
      */
     public form_reserva() {
         initComponents();
-        
+        setLocationRelativeTo(null);
        }
 
     /**

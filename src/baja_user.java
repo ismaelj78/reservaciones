@@ -1,3 +1,9 @@
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -8,12 +14,12 @@
  *
  * @author Ismael
  */
-public class menu_user extends javax.swing.JFrame {
+public class baja_user extends javax.swing.JFrame {
 
     /**
-     * Creates new form menu_admin
+     * Creates new form baja_lab
      */
-    public menu_user() {
+    public baja_user() {
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -31,9 +37,8 @@ public class menu_user extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        reserva = new javax.swing.JButton();
-        cancela = new javax.swing.JButton();
-        salir = new javax.swing.JButton();
+        user_borra = new javax.swing.JTextField();
+        borra_lab = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,21 +50,12 @@ public class menu_user extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel6.setText("LABORATORIOS DE CÓMPUTO");
 
-        jLabel3.setText("MENU DEL USUARIO");
+        jLabel3.setText("Ingresa el ID del usuario a borrar:");
 
-        reserva.setText("RESERVACIONES");
-        reserva.addActionListener(new java.awt.event.ActionListener() {
+        borra_lab.setText("BORRAR");
+        borra_lab.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reservaActionPerformed(evt);
-            }
-        });
-
-        cancela.setText("CANCELACIONES");
-
-        salir.setText("SALIR");
-        salir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                salirActionPerformed(evt);
+                borra_labActionPerformed(evt);
             }
         });
 
@@ -68,24 +64,25 @@ public class menu_user extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(jLabel1)
                         .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(reserva)
-                            .addComponent(cancela))
-                        .addGap(137, 137, 137))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(salir)
-                        .addGap(168, 168, 168))))
+                            .addComponent(jLabel6)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(jLabel3))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(104, 104, 104)
+                                .addComponent(borra_lab)))
+                        .addGap(18, 18, 18)
+                        .addComponent(user_borra, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,38 +90,53 @@ public class menu_user extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6)
-                        .addGap(11, 11, 11))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel6))
                     .addComponent(jLabel1))
+                .addGap(47, 47, 47)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(user_borra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(reserva)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cancela)
-                .addGap(18, 18, 18)
-                .addComponent(salir)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(borra_lab)
+                .addGap(0, 18, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_salirActionPerformed
-
-    private void reservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservaActionPerformed
-        form_reserva nueva_reserva=new form_reserva();
-        nueva_reserva.setVisible(true);
-        dispose();
-        //setVisible(false);
-    }//GEN-LAST:event_reservaActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
+    private void borra_labActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borra_labActionPerformed
+        try{
+        Class.forName("com.mysql.jdbc.Driver");
+        Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/reservacion","root","");
+        int seleccion = JOptionPane.showOptionDialog(null,"Deseas borrar el usuario?","Confirma el borrado",
+        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,null,
+        new Object[] { "Borrar", "Cancelar"}, "Borrar");
+        if(seleccion==0){
+            int borrar = Integer.parseInt(user_borra.getText());
+            Statement rs = con.createStatement();
+            rs.executeUpdate("DELETE FROM usuarios WHERE id_user='"+borrar+"'");
+            JOptionPane.showMessageDialog(null,"Usuario eliminado");
+            con.close();
+            menu_admin menu1=new menu_admin();
+            menu1.setVisible(true);
+            dispose();
+            //setVisible(false);
+            
+    }
+        else{
+            menu_admin menu1=new menu_admin();
+            menu1.setVisible(true);
+            dispose();
+            //setVisible(false);
+        }
+    }//GEN-LAST:event_borra_labActionPerformed
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+    }
+   
+ 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -139,31 +151,30 @@ public class menu_user extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(menu_admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(baja_lab.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(menu_admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(baja_lab.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(menu_admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(baja_lab.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(menu_admin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(baja_lab.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new menu_user().setVisible(true);
+                new baja_user().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton cancela;
+    private javax.swing.JButton borra_lab;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JButton reserva;
-    private javax.swing.JButton salir;
+    private javax.swing.JTextField user_borra;
     // End of variables declaration//GEN-END:variables
 }

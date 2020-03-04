@@ -134,13 +134,13 @@ public class menu_admin extends javax.swing.JFrame {
     private void form_labsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_form_labsActionPerformed
         op_lab menu_lab=new op_lab();
         menu_lab.setVisible(true);
-        setVisible(false);
+        dispose();
     }//GEN-LAST:event_form_labsActionPerformed
 
     private void form_usersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_form_usersActionPerformed
         op_usuarios op_users=new op_usuarios();
         op_users.setVisible(true);
-        setVisible(false);
+        dispose();
     }//GEN-LAST:event_form_usersActionPerformed
 
     /**
