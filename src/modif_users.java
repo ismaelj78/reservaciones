@@ -17,12 +17,12 @@ import javax.swing.JOptionPane;
  *
  * @author Ismael
  */
-public class modif_labs extends javax.swing.JFrame {
+public class modif_users extends javax.swing.JFrame {
 
     /**
      * Creates new form modif_labs
      */
-    public modif_labs() {
+    public modif_users() {
         initComponents();
     }
 
@@ -40,13 +40,15 @@ public class modif_labs extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        no_lab = new javax.swing.JTextField();
+        id_usuario = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        nom_lab = new javax.swing.JTextField();
+        nom_user = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        num_pc = new javax.swing.JTextField();
+        pass_user = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         modifica = new javax.swing.JButton();
+        tipo_user = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,13 +60,13 @@ public class modif_labs extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel6.setText("LABORATORIOS DE CÓMPUTO");
 
-        jLabel3.setText("MODIFICACIÓN DE LABORATORIOS");
+        jLabel3.setText("MODIFICACIÓN DE USUARIOS");
 
-        jLabel7.setText("No. Laboratorio");
+        jLabel7.setText("Id del Usuario");
 
         jLabel4.setText("Nombre");
 
-        jLabel5.setText("No. Máquinas");
+        jLabel5.setText("Password");
 
         jButton1.setText("Consulta");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -79,6 +81,8 @@ public class modif_labs extends javax.swing.JFrame {
                 modificaActionPerformed(evt);
             }
         });
+
+        jLabel8.setText("Tipo");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,20 +104,26 @@ public class modif_labs extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addGap(28, 28, 28)
-                        .addComponent(no_lab, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(id_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel5)
                             .addComponent(jLabel4))
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(num_pc, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nom_lab, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(pass_user, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nom_user, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(modifica)
                 .addGap(127, 127, 127))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel8)
+                .addGap(28, 28, 28)
+                .addComponent(tipo_user, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,18 +140,22 @@ public class modif_labs extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
-                    .addComponent(no_lab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(id_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addComponent(nom_lab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nom_user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(num_pc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pass_user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addGap(10, 10, 10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tipo_user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addComponent(modifica)
                 .addContainerGap())
         );
@@ -150,16 +164,23 @@ public class modif_labs extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String num_lab=no_lab.getText();
+        String id_user=id_usuario.getText();
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/reservacion","root","");
-            String p= "SELECT * FROM laboratorios WHERE id_lab='"+num_lab+"'";
+            String p= "SELECT * FROM usuarios WHERE id_user='"+id_user+"'";
             PreparedStatement pst=con.prepareStatement(p);
             ResultSet rs=pst.executeQuery();
             while(rs.next()){
-                nom_lab.setText(rs.getString(2));
-                num_pc.setText(rs.getString(3));
+                nom_user.setText(rs.getString(2));
+                pass_user.setText(rs.getString(3));
+                int tipo1=Integer.parseInt(rs.getString(4));
+                if (tipo1==1){
+                    tipo_user.setText("Administrador");
+                }
+                else{
+                    tipo_user.setText("Usuario");
+                }
             }
         }
         catch(Exception e){
@@ -168,9 +189,9 @@ public class modif_labs extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void modificaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificaActionPerformed
-        String num_lab=no_lab.getText();
-        String nombre_lab=nom_lab.getText();
-        String no_maquinas=num_pc.getText();
+        String num_lab=id_usuario.getText();
+        String nombre_lab=nom_user.getText();
+        String no_maquinas=pass_user.getText();
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/reservacion","root","");
@@ -216,12 +237,13 @@ public class modif_labs extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new modif_labs().setVisible(true);
+                new modif_users().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField id_usuario;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -230,9 +252,10 @@ public class modif_labs extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JButton modifica;
-    private javax.swing.JTextField no_lab;
-    private javax.swing.JTextField nom_lab;
-    private javax.swing.JTextField num_pc;
+    private javax.swing.JTextField nom_user;
+    private javax.swing.JTextField pass_user;
+    private javax.swing.JTextField tipo_user;
     // End of variables declaration//GEN-END:variables
 }

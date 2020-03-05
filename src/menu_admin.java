@@ -15,6 +15,7 @@ public class menu_admin extends javax.swing.JFrame {
      */
     public menu_admin() {
         initComponents();
+        //Sirve para que el formulario se presente al centro de la pantalla
         setLocationRelativeTo(null);
     }
 
@@ -63,6 +64,11 @@ public class menu_admin extends javax.swing.JFrame {
         });
 
         form_reportes.setText("REPORTES");
+        form_reportes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                form_reportesActionPerformed(evt);
+            }
+        });
 
         salir.setText("SALIR");
         salir.addActionListener(new java.awt.event.ActionListener() {
@@ -128,10 +134,13 @@ public class menu_admin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
+        //La sentencia mata sesión del usuario en el sistema
         System.exit(0);
     }//GEN-LAST:event_salirActionPerformed
 
     private void form_labsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_form_labsActionPerformed
+        //En todos los casos instncía un nuevo objeto de las clases de
+        //menús disponibles y destruye el formulario actual.
         op_lab menu_lab=new op_lab();
         menu_lab.setVisible(true);
         dispose();
@@ -142,6 +151,10 @@ public class menu_admin extends javax.swing.JFrame {
         op_users.setVisible(true);
         dispose();
     }//GEN-LAST:event_form_usersActionPerformed
+
+    private void form_reportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_form_reportesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_form_reportesActionPerformed
 
     /**
      * @param args the command line arguments

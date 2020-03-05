@@ -137,7 +137,9 @@ public class op_lab extends javax.swing.JFrame {
     }//GEN-LAST:event_regresaActionPerformed
 
     private void mod_labsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mod_labsActionPerformed
-        // TODO add your handling code here:
+        modif_labs mod_lab1=new modif_labs();
+        mod_lab1.setVisible(true);
+        dispose();
     }//GEN-LAST:event_mod_labsActionPerformed
 
     private void alta_labActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alta_labActionPerformed

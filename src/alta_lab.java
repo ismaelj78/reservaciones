@@ -148,15 +148,23 @@ public class alta_lab extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try{
+            //Las primeras 3 líneas obtienen los valores presentes en los text box
+            //y los asignan a objetos de tipo String, como variables.
             String no= no_lab.getText();
             String nom= nom_lab.getText();
             String no_pc=num_pc.getText();
+            //Establecemos la conexión a la BD, tal como se explicó en el formulario
+            //de PERFIL.JAVA
             Class.forName("com.mysql.jdbc.Driver");
             Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/reservacion","root","");
+            //Se establece la sentencia SQL para insertar los valores de las variables
+            //en los campos de la tabla LABORATORIOS
             String sql="INSERT INTO laboratorios VALUES ('"+no+"','"+nom+"','"+no_pc+"')";
+            //Se prepara las sentencia y se ejecuta el query
             Statement res= con.createStatement();
             res.executeUpdate(sql);
             JOptionPane.showMessageDialog(null,"Alta de laboratorio exitosa");
+            //Se cierra la conexión a la BD
             con.close();
         }
         catch(Exception e){

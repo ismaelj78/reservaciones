@@ -130,15 +130,29 @@ public class perfil extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try{
+            //Las 2 primeras líneas establecen la conexión a la BD
+            //la primera llama a la clase del driver y la segunda establece
+            //los parámetros que requiere la conexión: Tipo de controlador,
+            //manejador, servidor, puerto de com., nombre de la BD y las credenciales
             Class.forName("com.mysql.jdbc.Driver");
             Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/reservacion","root","");
+            //Establece la consulta SQL con los parámetros requeridos, donde
+            //la referencia a los valores de las variables es relativa
             String sql="Select * from usuarios where id_user=? and password=?";
+            //Se prepara la sentencia a ser ejecutada en el manejador de BD
+            //en dos momentos: a través del preparedstatment establece la conexión
+            //a traves del reulset la ejecuta
             PreparedStatement pst=con.prepareStatement(sql);
             pst.setString(1,usuario.getText());
             pst.setString(2,passwd.getText());
             ResultSet rs=pst.executeQuery();
-            if(rs.next()){
+            if(rs.next()){ //Mientras haya al menos un registro encontrado
+                //Obtiene el valor de la comuna 4 de la consulta, en el entendido
+                //que no existe la columna 0
                 int tipo=rs.getInt(4);
+                //Si el tipo de usuario es 1, entonces se lamda a llamar un
+                //objeto de la clase menu_admin y se instancía.
+                //Dispose "tira" la ventana del login
                 if(tipo==1){
                 menu_admin menu1=new menu_admin();
                 menu1.setVisible(true);
