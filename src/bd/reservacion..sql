@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-03-2020 a las 17:14:16
+-- Tiempo de generación: 09-03-2020 a las 17:56:37
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.1
 
@@ -40,8 +40,7 @@ CREATE TABLE `laboratorios` (
 
 INSERT INTO `laboratorios` (`id_lab`, `nombre`, `num_maq`) VALUES
 (1, 'Laboratorio 1', 40),
-(2, 'Laboratorio 2', 45),
-(3, 'Laboratorio 70', 25);
+(2, 'Laboratorio 2', 45);
 
 -- --------------------------------------------------------
 
@@ -53,26 +52,16 @@ CREATE TABLE `reservas` (
   `id_reserva` int(11) NOT NULL,
   `laboratorio` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `fecha` date NOT NULL,
-  `hora` varchar(50) COLLATE utf8_spanish_ci NOT NULL
+  `hora` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `id_user` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `reservas`
 --
 
-INSERT INTO `reservas` (`id_reserva`, `laboratorio`, `fecha`, `hora`) VALUES
-(1, 'Laboratorio 1', '2020-02-29', '7-9 am'),
-(2, 'Laboratorio 2', '2020-02-24', '6-8 pm'),
-(8, 'Laboratorio 3', '2020-02-05', '7-9 am'),
-(9, 'Laboratorio 2', '2020-02-29', '7-9 am'),
-(10, 'Laboratorio 3', '2020-02-24', '6-8 pm'),
-(11, 'Laboratorio 2', '2020-03-02', '8-10 pm'),
-(12, 'Laboratorio 1', '2020-03-02', '8-10 pm'),
-(13, 'Laboratorio 2', '2020-03-02', '8-10 pm'),
-(14, 'Laboratorio 1', '2020-03-03', '7-9 am'),
-(15, 'Laboratorio 2', '2020-03-03', '6-8 pm'),
-(16, 'Laboratorio 1', '2020-03-04', '7-9 am'),
-(17, 'Laboratorio 1', '2020-03-05', '7-9 am');
+INSERT INTO `reservas` (`id_reserva`, `laboratorio`, `fecha`, `hora`, `id_user`) VALUES
+(11, 'Laboratorio 1', '2020-03-13', '9-11 am', 2);
 
 -- --------------------------------------------------------
 
@@ -94,8 +83,7 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id_user`, `nombre`, `password`, `tipo`) VALUES
 (1, 'Ismael Jiménez', 'may781116', 1),
 (2, 'Alvaro Espejel', 'Elmayo78', 2),
-(3, 'Pedro Sánchez', 'pesa23', 2),
-(4, 'Raúl López', 'ralo23', 1);
+(14, 'Alonso Uribe', 'alur123', 2);
 
 --
 -- Índices para tablas volcadas
@@ -127,7 +115,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `reservas`
 --
 ALTER TABLE `reservas`
-  MODIFY `id_reserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_reserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
