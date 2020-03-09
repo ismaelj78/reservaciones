@@ -161,6 +161,8 @@ public class perfil extends javax.swing.JFrame {
                 else{
                 menu_user menu2=new menu_user();
                 menu2.setVisible(true);
+                //La siguiente línea envía el valor que tiene el text field USUARIO al objeto (text field) USER que se
+                //encuentra en la clase MENU_USER que corresponde al formulario del menu de usuarios.
                 menu_user.user.setText(usuario.getText());
                 dispose();
                 }

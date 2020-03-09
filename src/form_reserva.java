@@ -29,6 +29,7 @@ static String hora;
     public form_reserva() {
         initComponents();
         setLocationRelativeTo(null);
+        //Objeto de tipo text field que se encuentra oculto y que recibe el id del usuario del menu del usuario
         usuario.setVisible(false);
         
        }

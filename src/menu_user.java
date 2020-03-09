@@ -15,6 +15,7 @@ public class menu_user extends javax.swing.JFrame {
     public menu_user() {
         initComponents();
         setLocationRelativeTo(null);
+        //Objeto de tipo text field que se encuentra oculto y que recibe el id del usuario del login
         user.setVisible(false);
         //System.out.println(user.getText());
     }
@@ -130,6 +131,8 @@ public class menu_user extends javax.swing.JFrame {
     private void reservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservaActionPerformed
         form_reserva nueva_reserva=new form_reserva();
         nueva_reserva.setVisible(true);
+        //La siguiente línea envía el valor que tiene el text field USER al objeto (text field) USUARIO que se
+        //encuentra en la clase FORM_RESERVA que corresponde al formulario donde haremos la reservación.
         form_reserva.usuario.setText(user.getText());
         dispose();
         //setVisible(false);
@@ -138,6 +141,8 @@ public class menu_user extends javax.swing.JFrame {
     private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelaActionPerformed
         baja_reserva borra_reserva=new baja_reserva();
         borra_reserva.setVisible(true);
+        //La siguiente línea envía el valor que tiene el text field USER al objeto (text field) USUARIO que se
+        //encuentra en la clase BAJA_RESERVA que corresponde al formulario donde se hace la baja de la reservación.
         baja_reserva.usuario.setText(user.getText());
         dispose();
     }//GEN-LAST:event_cancelaActionPerformed
