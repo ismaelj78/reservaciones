@@ -135,7 +135,9 @@ public class op_usuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_regresaActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+            modif_users modifica_usuario=new modif_users();
+            modifica_usuario.setVisible(true);
+            dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void alta_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alta_userActionPerformed

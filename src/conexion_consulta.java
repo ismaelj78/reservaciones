@@ -16,7 +16,7 @@ public class conexion_consulta {
    try {
           Class.forName("com.mysql.jdbc.Driver");
           conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/reservacion","root","");
-          System.out.println("Hasta aquí todo bien");
+          //System.out.println("Hasta aquí todo bien");
         }
     catch(Exception e){
             JOptionPane.showMessageDialog(null,e);
@@ -63,13 +63,19 @@ public class conexion_consulta {
     }
     
     public static void guardar(campos_altas x){
-        
+        String ultimo=null;
         try{
-            String sql= "INSERT INTO reservas (laboratorio,fecha,hora) VALUES ('"+x.getLaboratorio()+"','"+x.getFecha()+"','"+x.getHora()+"')";
+            String sql= "INSERT INTO reservas (laboratorio,fecha,hora,id_user) VALUES ('"+x.getLaboratorio()+"','"+x.getFecha()+"','"+x.getHora()+"','"+x.getId_usuario()+"')";
             Statement res= conexion.createStatement();
             
             res.executeUpdate(sql);
-            JOptionPane.showMessageDialog(null, "Reservación exitosa");
+            
+            PreparedStatement stmtr = conexion.prepareStatement("SELECT * FROM reservas ORDER BY id_reserva DESC");
+            ResultSet rsr = stmtr.executeQuery();
+            if(rsr.next()){
+                ultimo = rsr.getString(1);
+            }
+            JOptionPane.showMessageDialog(null, "Tu número de reservación es: "+ultimo+"\n Es muy importante que anotes este número\n si deseas cancelar la reservación");
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null, e);

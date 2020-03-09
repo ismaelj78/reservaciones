@@ -6,6 +6,7 @@ public class campos_altas {
     String fecha;
     String laboratorio;
     String hora;
+    int id_usuario;
 
     public String getFecha() {
         return fecha;
@@ -30,11 +31,19 @@ public class campos_altas {
     public void setHora(String hora) {
         this.hora = hora;
     }
+     public int getId_usuario() {
+        return id_usuario;
+    }
 
-    public campos_altas(String fecha, String laboratorio, String hora) {
+    public void setId_usuario(int id_usuario) {
+        this.id_usuario = id_usuario;
+    }
+
+    public campos_altas(String fecha, String laboratorio, String hora, int id_usuario) {
         this.fecha = fecha;
         this.laboratorio = laboratorio;
         this.hora = hora;
+        this.id_usuario = id_usuario;
     }
     
 }

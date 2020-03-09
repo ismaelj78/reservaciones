@@ -29,6 +29,8 @@ static String hora;
     public form_reserva() {
         initComponents();
         setLocationRelativeTo(null);
+        usuario.setVisible(false);
+        
        }
 
     /**
@@ -49,6 +51,7 @@ static String hora;
         jPanel2 = new javax.swing.JPanel();
         disp = new javax.swing.JComboBox<>();
         reserva1 = new javax.swing.JButton();
+        usuario = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -113,7 +116,11 @@ static String hora;
                         .addComponent(disp, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(60, 60, 60)
-                        .addComponent(reserva1)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(reserva1))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -123,6 +130,8 @@ static String hora;
                 .addComponent(disp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(reserva1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -191,6 +200,9 @@ static String hora;
         campos_altas x=null;
         x=guardar();
         conexion_consulta.guardar(x);
+        menu_user menu1=new menu_user();
+        menu1.setVisible(true);
+        dispose();
     }//GEN-LAST:event_reserva1ActionPerformed
 
     /**
@@ -230,9 +242,9 @@ static String hora;
     
     public campos_altas guardar(){
         campos_altas r= null;
-        
+        int usuario1=Integer.parseInt(usuario.getText());
         String lab= (String)disp.getSelectedItem();
-        r= new campos_altas(fecha,lab,hora);
+        r= new campos_altas(fecha,lab,hora,usuario1);
         return r;
     }
 
@@ -246,6 +258,7 @@ static String hora;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton reserva1;
+    public static javax.swing.JTextField usuario;
     private javax.swing.JButton verifica;
     // End of variables declaration//GEN-END:variables
 }

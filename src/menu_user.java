@@ -9,13 +9,14 @@
  * @author Ismael
  */
 public class menu_user extends javax.swing.JFrame {
-
     /**
      * Creates new form menu_admin
      */
     public menu_user() {
         initComponents();
         setLocationRelativeTo(null);
+        user.setVisible(false);
+        //System.out.println(user.getText());
     }
 
     /**
@@ -34,6 +35,7 @@ public class menu_user extends javax.swing.JFrame {
         reserva = new javax.swing.JButton();
         cancela = new javax.swing.JButton();
         salir = new javax.swing.JButton();
+        user = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,6 +57,11 @@ public class menu_user extends javax.swing.JFrame {
         });
 
         cancela.setText("CANCELACIONES");
+        cancela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelaActionPerformed(evt);
+            }
+        });
 
         salir.setText("SALIR");
         salir.addActionListener(new java.awt.event.ActionListener() {
@@ -69,7 +76,7 @@ public class menu_user extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(39, 39, 39)
@@ -80,7 +87,10 @@ public class menu_user extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel3)
-                            .addComponent(reserva)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(reserva))
                             .addComponent(cancela))
                         .addGap(137, 137, 137))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -100,7 +110,9 @@ public class menu_user extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(reserva)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(reserva)
+                    .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cancela)
                 .addGap(18, 18, 18)
@@ -118,9 +130,17 @@ public class menu_user extends javax.swing.JFrame {
     private void reservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservaActionPerformed
         form_reserva nueva_reserva=new form_reserva();
         nueva_reserva.setVisible(true);
+        form_reserva.usuario.setText(user.getText());
         dispose();
         //setVisible(false);
     }//GEN-LAST:event_reservaActionPerformed
+
+    private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelaActionPerformed
+        baja_reserva borra_reserva=new baja_reserva();
+        borra_reserva.setVisible(true);
+        baja_reserva.usuario.setText(user.getText());
+        dispose();
+    }//GEN-LAST:event_cancelaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -165,5 +185,6 @@ public class menu_user extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JButton reserva;
     private javax.swing.JButton salir;
+    public static javax.swing.JTextField user;
     // End of variables declaration//GEN-END:variables
 }

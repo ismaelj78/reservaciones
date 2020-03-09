@@ -1,6 +1,8 @@
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 
@@ -14,14 +16,15 @@ import javax.swing.JOptionPane;
  *
  * @author Ismael
  */
-public class baja_lab extends javax.swing.JFrame {
+public class baja_reserva extends javax.swing.JFrame {
 
     /**
-     * Creates new form baja_lab
+     * Creates new form baja_reserva
      */
-    public baja_lab() {
+    public baja_reserva() {
         initComponents();
         setLocationRelativeTo(null);
+        usuario.setVisible(false);
     }
 
     /**
@@ -37,8 +40,9 @@ public class baja_lab extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        lab_borra = new javax.swing.JTextField();
-        borra_lab = new javax.swing.JButton();
+        no_res = new javax.swing.JTextField();
+        cancela = new javax.swing.JButton();
+        usuario = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,12 +54,12 @@ public class baja_lab extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel6.setText("LABORATORIOS DE CÓMPUTO");
 
-        jLabel3.setText("Ingresa el ID del laboratorio a borrar:");
+        jLabel3.setText("Ingresa el número de reervación a cancelar:");
 
-        borra_lab.setText("BORRAR");
-        borra_lab.addActionListener(new java.awt.event.ActionListener() {
+        cancela.setText("CANCELA");
+        cancela.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                borra_labActionPerformed(evt);
+                cancelaActionPerformed(evt);
             }
         });
 
@@ -64,25 +68,25 @@ public class baja_lab extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addComponent(jLabel3))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(104, 104, 104)
-                                .addComponent(borra_lab)))
-                        .addGap(18, 18, 18)
-                        .addComponent(lab_borra, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(no_res))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(154, 154, 154)
+                        .addComponent(cancela)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,56 +97,70 @@ public class baja_lab extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel6))
                     .addComponent(jLabel1))
-                .addGap(47, 47, 47)
+                .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(lab_borra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(no_res, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(borra_lab)
-                .addGap(0, 18, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancela))
+                .addGap(0, 26, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void borra_labActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borra_labActionPerformed
+    private void cancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelaActionPerformed
+        String user=usuario.getText();
+        int borrar = Integer.parseInt(no_res.getText());
         try{
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/reservacion","root","");
-        //La siguiente rutina muestra una ventana de diálogo para indicar un WARNING
-        //donde se pregunta si en verdad se desea borrar el registro
-        int seleccion = JOptionPane.showOptionDialog(null,"Deseas borrar el laboratorio?","Confirma el borrado",
-        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,null,
-        //El new Object inicia dos botones "Borrar" y "Cancelar", borrar tiene un valor de 0
-        //y cancelar tendrá un valor de 1
-        new Object[] { "Borrar", "Cancelar"}, "Borrar");
-        if(seleccion==0){
-            //Lab_borra es el text field donde ingresamos el ID del laboratorio a eliminar
-            int borrar = Integer.parseInt(lab_borra.getText());
-            Statement rs = con.createStatement();
-            //La siguiente línea ejecuta el borrado del registro de la tabla LABORATORIOS
-            //donde el campo id_lab sea igual que el valor de la variable borrar
-            rs.executeUpdate("DELETE FROM laboratorios WHERE id_lab='"+borrar+"'");
-            JOptionPane.showMessageDialog(null,"Registro eliminado");
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/reservacion","root","");
+            String p= "SELECT * FROM reservas WHERE id_reserva='"+borrar+"' AND id_user='"+user+"'";
+            PreparedStatement pst=con.prepareStatement(p);
+            ResultSet rs=pst.executeQuery();
+            while(rs.next()){
+                //if(user==rs.getString(1)){
+                try{
+                int seleccion = JOptionPane.showOptionDialog(null,"Deseas cancelar tu reservación?","Cancela la reservación",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,null,
+                    new Object[] { "Borrar", "Cancelar"}, "Borrar");
+            if(seleccion==0){
+            //int borrar = Integer.parseInt(no_res.getText());
+            Statement rs1 = con.createStatement();
+            rs1.executeUpdate("DELETE FROM reservas WHERE id_reserva='"+borrar+"'");
+            JOptionPane.showMessageDialog(null,"Reservación cancelada");
             con.close();
-            //Una vez   que realiza el borrado regresa de inmediato al MENU del admin.
-            menu_admin menu1=new menu_admin();
+            menu_user menu1=new menu_user();
             menu1.setVisible(true);
             dispose();
-            
-    }
+        }
         else{
-            menu_admin menu1=new menu_admin();
+            menu_user menu1=new menu_user();
             menu1.setVisible(true);
             dispose();
+            //setVisible(false);
         }
-    }//GEN-LAST:event_borra_labActionPerformed
+                }                                   
         catch(Exception e){
-            JOptionPane.showMessageDialog(null,e);
+            //JOptionPane.showMessageDialog(null,e);
         }
-    }
-   
- 
+                }
+            JOptionPane.showMessageDialog(null,"Tu no eres el propietario de esta reservación");
+            menu_user menu1=new menu_user();
+            menu1.setVisible(true);
+            dispose();
+            }
+        catch(Exception e){
+            //JOptionPane.showMessageDialog(null,e);
+        }
+       
+    }//GEN-LAST:event_cancelaActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -157,30 +175,31 @@ public class baja_lab extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(baja_lab.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(baja_reserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(baja_lab.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(baja_reserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(baja_lab.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(baja_reserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(baja_lab.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(baja_reserva.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new baja_lab().setVisible(true);
+                new baja_reserva().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton borra_lab;
+    private javax.swing.JButton cancela;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField lab_borra;
+    private javax.swing.JTextField no_res;
+    public static javax.swing.JTextField usuario;
     // End of variables declaration//GEN-END:variables
 }

@@ -161,6 +161,7 @@ public class perfil extends javax.swing.JFrame {
                 else{
                 menu_user menu2=new menu_user();
                 menu2.setVisible(true);
+                menu_user.user.setText(usuario.getText());
                 dispose();
                 }
             }

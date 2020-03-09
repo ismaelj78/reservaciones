@@ -24,6 +24,7 @@ public class modif_labs extends javax.swing.JFrame {
      */
     public modif_labs() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -150,13 +151,20 @@ public class modif_labs extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String num_lab=no_lab.getText();
+        //Este método nos permite consultar si existe el registro de un laboratorio que pretendemos actualizar
+        String num_lab=no_lab.getText(); //Ingresamos el id del laboratorio a consultar
         try{
+            //Establecemos la conexión  la BD
             Class.forName("com.mysql.jdbc.Driver");
             Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/reservacion","root","");
+            //La sentencia SQL nos arrojará los datos del número de laboratorio elegido
             String p= "SELECT * FROM laboratorios WHERE id_lab='"+num_lab+"'";
+            //Preparamos la sentencia
             PreparedStatement pst=con.prepareStatement(p);
+            //Ejecutamos la sentencia
             ResultSet rs=pst.executeQuery();
+            //Mientras haya algo en el ResultSet solicitaremos se nos brinde el valor
+            //que exista en las posiciones 2 y 3 para llenar los TextFields del formulario
             while(rs.next()){
                 nom_lab.setText(rs.getString(2));
                 num_pc.setText(rs.getString(3));
@@ -169,12 +177,15 @@ public class modif_labs extends javax.swing.JFrame {
 
     private void modificaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificaActionPerformed
         String num_lab=no_lab.getText();
-        String nombre_lab=nom_lab.getText();
-        String no_maquinas=num_pc.getText();
+        String nombre_lab=nom_lab.getText();//Obtiene el valor actualizado del TextField nom_lab
+        String no_maquinas=num_pc.getText();//Obtiene el valor actualizado del TextField num_pc
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/reservacion","root","");
             Statement s = con.createStatement();
+            //Ejecuta la sentencia SQL sobre la tabla LABORATORIOS, actualizando los campos
+            //nombre y num_maq con los valores de las variables correspondientes, pero sólo
+            //en el registro cuyo valor de ID sea el que se encuentra en num_lab
             s.executeUpdate("UPDATE laboratorios SET nombre='"+nombre_lab+"', num_maq='"+no_maquinas+"' WHERE id_lab='"+num_lab+"'");
             JOptionPane.showMessageDialog(null,"Registro actualizado con exito");
             menu_admin menu1=new menu_admin();

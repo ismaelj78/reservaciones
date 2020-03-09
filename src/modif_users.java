@@ -189,14 +189,22 @@ public class modif_users extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void modificaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificaActionPerformed
-        String num_lab=id_usuario.getText();
-        String nombre_lab=nom_user.getText();
-        String no_maquinas=pass_user.getText();
+        String id_user1=id_usuario.getText();
+        String nombre=nom_user.getText();
+        String pass=pass_user.getText();
+        String tipo=tipo_user.getText();
+        int tipo1;
+        if (tipo.equals("Administrador")){
+                    tipo1=1;
+                }
+        else{
+                    tipo1=2;
+                }
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/reservacion","root","");
             Statement s = con.createStatement();
-            s.executeUpdate("UPDATE laboratorios SET nombre='"+nombre_lab+"', num_maq='"+no_maquinas+"' WHERE id_lab='"+num_lab+"'");
+            s.executeUpdate("UPDATE usuarios SET nombre='"+nombre+"', password='"+pass+"', tipo='"+tipo1+"' WHERE id_user='"+id_user1+"'");
             JOptionPane.showMessageDialog(null,"Registro actualizado con exito");
             menu_admin menu1=new menu_admin();
             menu1.setVisible(true);
