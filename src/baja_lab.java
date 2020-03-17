@@ -1,6 +1,8 @@
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 
@@ -22,6 +24,20 @@ public class baja_lab extends javax.swing.JFrame {
     public baja_lab() {
         initComponents();
         setLocationRelativeTo(null);
+        espacio.removeAllItems();
+        try{
+        Class.forName("com.mysql.jdbc.Driver");
+        Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/reservacion","root","");
+        String p= "SELECT * FROM laboratorios";
+        PreparedStatement pst=con.prepareStatement(p);
+        ResultSet rs=pst.executeQuery();
+            while(rs.next()){
+                espacio.addItem(rs.getString(2));
+            }
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
     }
 
     /**
@@ -34,23 +50,17 @@ public class baja_lab extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        lab_borra = new javax.swing.JTextField();
         borra_lab = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        espacio = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Ismael\\Pictures\\logo cuh.png")); // NOI18N
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setText("SISTEMA DE RESERVACIÓN DE");
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel6.setText("LABORATORIOS DE CÓMPUTO");
-
-        jLabel3.setText("Ingresa el ID del laboratorio a borrar:");
+        jLabel3.setText("Selecciona el espacio a eliminar:");
 
         borra_lab.setText("BORRAR");
         borra_lab.addActionListener(new java.awt.event.ActionListener() {
@@ -58,6 +68,14 @@ public class baja_lab extends javax.swing.JFrame {
                 borra_labActionPerformed(evt);
             }
         });
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel6.setText("ESPACIOS DE USOS MÚLTIPLES");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setText("SISTEMA DE RESERVACIÓN DE ");
+
+        espacio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -68,38 +86,38 @@ public class baja_lab extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1)
-                        .addGap(39, 39, 39)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addComponent(jLabel3))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(104, 104, 104)
-                                .addComponent(borra_lab)))
+                        .addGap(152, 152, 152)
+                        .addComponent(borra_lab)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel3)
                         .addGap(18, 18, 18)
-                        .addComponent(lab_borra, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(espacio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel6))
-                    .addComponent(jLabel1))
-                .addGap(47, 47, 47)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel6)))
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(lab_borra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(espacio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(borra_lab)
-                .addGap(0, 18, Short.MAX_VALUE))
+                .addGap(0, 15, Short.MAX_VALUE))
         );
 
         pack();
@@ -118,11 +136,12 @@ public class baja_lab extends javax.swing.JFrame {
         new Object[] { "Borrar", "Cancelar"}, "Borrar");
         if(seleccion==0){
             //Lab_borra es el text field donde ingresamos el ID del laboratorio a eliminar
-            int borrar = Integer.parseInt(lab_borra.getText());
+            String borrar=(String)espacio.getSelectedItem();
+            //int borrar = Integer.parseInt(lab_borra.getText());
             Statement rs = con.createStatement();
             //La siguiente línea ejecuta el borrado del registro de la tabla LABORATORIOS
             //donde el campo id_lab sea igual que el valor de la variable borrar
-            rs.executeUpdate("DELETE FROM laboratorios WHERE id_lab='"+borrar+"'");
+            rs.executeUpdate("DELETE FROM laboratorios WHERE nombre='"+borrar+"'");
             JOptionPane.showMessageDialog(null,"Registro eliminado");
             con.close();
             //Una vez   que realiza el borrado regresa de inmediato al MENU del admin.
@@ -177,10 +196,10 @@ public class baja_lab extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton borra_lab;
+    private javax.swing.JComboBox<String> espacio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField lab_borra;
     // End of variables declaration//GEN-END:variables
 }

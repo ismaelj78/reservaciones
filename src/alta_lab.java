@@ -55,14 +55,14 @@ public class alta_lab extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Ismael\\Pictures\\logo cuh.png")); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setText("SISTEMA DE RESERVACIÓN DE");
+        jLabel2.setText("SISTEMA DE RESERVACIÓN DE ");
 
         jLabel3.setText("Nombre");
 
-        jLabel4.setText("No. Máquinas");
+        jLabel4.setText("No. Espacios");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel6.setText("LABORATORIOS DE CÓMPUTO");
+        jLabel6.setText("ESPACIOS DE USOS MÚLTIPLES");
 
         jButton1.setText("ALTA");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -71,7 +71,7 @@ public class alta_lab extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setText("No. Laboratorio");
+        jLabel7.setText("Id del espacio");
 
         regresar.setText("Regresar");
         regresar.addActionListener(new java.awt.event.ActionListener() {
@@ -112,7 +112,7 @@ public class alta_lab extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(num_pc, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(nom_lab, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(12, 36, Short.MAX_VALUE))
+                .addGap(12, 45, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,8 +121,9 @@ public class alta_lab extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel6)
+                        .addGap(11, 11, 11))
                     .addComponent(jLabel1))
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
