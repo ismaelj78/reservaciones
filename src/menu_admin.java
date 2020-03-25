@@ -152,7 +152,9 @@ public class menu_admin extends javax.swing.JFrame {
     }//GEN-LAST:event_form_usersActionPerformed
 
     private void form_reportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_form_reportesActionPerformed
-        // TODO add your handling code here:
+        reportes reporte=new reportes();
+        reporte.setVisible(true);
+        dispose();
     }//GEN-LAST:event_form_reportesActionPerformed
 
     /**

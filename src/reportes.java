@@ -15,6 +15,7 @@ public class reportes extends javax.swing.JFrame {
      */
     public reportes() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -29,9 +30,8 @@ public class reportes extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        rep_espacios = new javax.swing.JButton();
+        regresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -41,13 +41,21 @@ public class reportes extends javax.swing.JFrame {
         jLabel2.setText("SISTEMA DE RESERVACIÓN DE");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel6.setText("LABORATORIOS DE CÓMPUTO");
+        jLabel6.setText("ESPACIOS COMUNITARIOS");
 
-        jButton1.setText("REPORTE DE LABORATORIOS");
+        rep_espacios.setText("REPORTE DE ESPACIOS");
+        rep_espacios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rep_espaciosActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("REGRESAR");
-
-        jButton3.setText("REPORTE DE USUARIOS");
+        regresar.setText("REGRESAR");
+        regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                regresarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -55,7 +63,7 @@ public class reportes extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton2))
+                .addComponent(regresar))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -67,13 +75,8 @@ public class reportes extends javax.swing.JFrame {
                             .addComponent(jLabel6))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(107, 107, 107))))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(135, Short.MAX_VALUE)
-                    .addComponent(jButton3)
-                    .addGap(118, 118, 118)))
+                        .addComponent(rep_espacios)
+                        .addGap(109, 109, 109))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,19 +88,26 @@ public class reportes extends javax.swing.JFrame {
                         .addComponent(jLabel6)
                         .addGap(11, 11, 11))
                     .addComponent(jLabel1))
-                .addGap(61, 61, 61)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(95, Short.MAX_VALUE)
-                    .addComponent(jButton3)
-                    .addGap(72, 72, 72)))
+                .addGap(26, 26, 26)
+                .addComponent(rep_espacios)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addComponent(regresar))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarActionPerformed
+        menu_admin menu1=new menu_admin();
+        menu1.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_regresarActionPerformed
+
+    private void rep_espaciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rep_espaciosActionPerformed
+        Rep_espacios reporte=new Rep_espacios();
+        reporte.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_rep_espaciosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -135,11 +145,10 @@ public class reportes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JButton regresar;
+    private javax.swing.JButton rep_espacios;
     // End of variables declaration//GEN-END:variables
 }
